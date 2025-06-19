@@ -1,117 +1,148 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Login Avantis</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Avantis Dynamics</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
   <style>
+    @font-face {
+      font-family: 'Switzer';
+      src: url('/assets/fonts/Switzer-Regular.woff2') format('woff2');
+      font-weight: normal;
+      font-style: normal;
+    }
+
     * {
       box-sizing: border-box;
-      font-family: 'Inter', sans-serif;
       margin: 0;
       padding: 0;
+      font-family: 'Switzer', 'Inter', sans-serif;
     }
 
     body {
-      background-color: #121212;
-      color: #ffffff;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      height: 100vh;
+      min-height: 100vh;
+      background-color: #0d0d0d;
     }
 
-    .container {
-      background-color: #1e1e1e;
+    .left, .right {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+    }
+
+    .left {
+      background: url(/assets/login-bg.jpg) no-repeat center center;
+      background-size: cover;
+      flex-direction: column;
       padding: 40px;
-      border-radius: 16px;
-      width: 100%;
-      max-width: 360px;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
       text-align: center;
     }
 
-    .container h2 {
-      font-size: 24px;
-      margin-bottom: 8px;
+    .left h1 {
+      font-size: 26px;
+      font-weight: 500;
+      margin-bottom: 20px;
+      color: rgb(253, 255, 246);
     }
 
-    .container p {
+    .right {
+      background-color: #000000;
+      flex-direction: column;
+      padding: 40px;
+    }
+
+    .right h1 {
+      font-size: 26px;
+      font-weight: 500;
+      color: white;
+      margin-bottom: 30px;
+    }
+
+    form {
+      width: 100%;
+      max-width: 320px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    label {
+      margin-bottom: 5px;
       font-size: 14px;
       color: #aaa;
-      margin-bottom: 32px;
     }
 
-    input[type="text"],
-    input[type="password"] {
-      width: 100%;
-      padding: 12px;
-      margin-bottom: 16px;
+    input {
+      margin-bottom: 20px;
+      padding: 10px;
       border: none;
-      border-radius: 8px;
-      background-color: #2c2c2c;
-      color: #fff;
-    }
-
-    input::placeholder {
-      color: #777;
+      border-radius: 6px;
+      font-size: 14px;
+      background-color: #222;
+      color: white;
     }
 
     button {
-      width: 100%;
       padding: 12px;
-      background-color: #fff;
-      color: #000;
+      background-color: white;
+      color: #111;
       font-weight: 600;
       border: none;
-      border-radius: 8px;
+      border-radius: 6px;
       cursor: pointer;
-      transition: background 0.2s ease;
+      transition: background 0.3s ease;
     }
 
     button:hover {
-      background-color: #e5e5e5;
+      background-color: #ddd;
     }
 
-    .error {
-      color: #ff6b6b;
-      margin-top: 10px;
-      font-size: 13px;
+    #errorMsg {
+      color: #ff4c4c;
+      font-size: 14px;
+      margin-bottom: 10px;
     }
 
-    .extra-links {
-      font-size: 12px;
-      margin-top: 24px;
-      color: #777;
-    }
+    @media (max-width: 768px) {
+      body {
+        flex-direction: column;
+      }
 
-    .extra-links a {
-      color: #fff;
-      text-decoration: underline;
+      .left {
+        display: none;
+      }
+
+      .right {
+        width: 100%;
+        padding: 60px 20px;
+        align-items: center;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container" id="loginForm">
-    <h2>Welcome back to Avantis!</h2>
+  <div class="left">
+    <h1>From above, we see the world. With Avantis, we transform it.</h1>
+  </div>
+  <div class="right">
+    <h1>Bem vindo de volta</h1>
+    <form onsubmit="login(event)">
 
-    <input type="text" id="user" placeholder="Usuário" autocomplete="off" />
-    <input type="password" id="pass" placeholder="Senha" />
-    
-    <button onclick="login()">Login</button>
+      <label for="username">Usuário</label>
+      <input type="text" id="user" name="username" placeholder="Digite seu usuário" required />
 
-    <div class="error" id="errorMsg"></div>
+      <label for="password">Senha</label>
+      <input type="password" id="pass" name="password" placeholder="Digite sua senha" required />
 
-    <div class="extra-links">
-      Ao entrar, você concorda com os <a href="#">Termos de Uso</a> e <a href="#">Política de Privacidade</a>
-    </div>
+      <div id="errorMsg"></div>
+
+      <button type="submit">Login</button>
+    </form>
   </div>
 
-  <script
-  src="script.js">
-  </script>
-
+  <script src="script.js"></script>
 </body>
 </html>
